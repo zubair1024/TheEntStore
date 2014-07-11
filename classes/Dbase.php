@@ -82,7 +82,8 @@ class Dbase {
         $out = $this->fetchAll($sql);
         return array_shift($out);
     }
-    public function lastId(){
+
+    public function lastId() {
         return mysql_insert_id($this->_conndb);
     }
 
