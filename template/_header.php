@@ -6,7 +6,7 @@
 <meta name="description" content="The Entertainment Store" />
 <meta name="keywords" content="The Entertainment Store" />
 <meta http-equiv="imagetoolbar" content="no" />
-<link href="/css/core.css" rel="stylesheet" type="text/css" />
+<link href="../css/core.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <div id="header">
