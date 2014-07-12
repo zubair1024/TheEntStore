@@ -7,6 +7,7 @@ class Dbase {
     private $_password = "";
     private $_name = "ecommercee";
     private $_conndb = false;
+    
     public $_last_query = null;
     public $_affected_rows = 0;
     public $_insert_keys = array();
