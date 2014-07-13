@@ -1,6 +1,19 @@
 <?php
 class Helper {
-	
+	public static function getActive($page=NULL){
+            if(!empty($page)){
+                if(is_array($page)){
+                    $error=array();
+                    foreach($page as $key=>$value){
+                        if(Url::getParams($key)!=$value){
+                            array_push($error, $key);
+                        }
+                    }
+                    return empty($error)?"class=\"act\"":null;
+                }
+                return $page==Url::cPage()?"class=\"act\"":null;
+            }
+        }
 	public static function encodeHTML($string, $case = 2) {
 		switch($case) {
 			case 1:
