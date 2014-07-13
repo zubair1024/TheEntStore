@@ -7,7 +7,6 @@ class Dbase {
     private $_password = "";
     private $_name = "ecommercee";
     private $_conndb = false;
-    
     public $_last_query = null;
     public $_affected_rows = 0;
     public $_insert_keys = array();
@@ -20,20 +19,20 @@ class Dbase {
     }
 
     private function connect() {
-        $this->_conndb = mysql_connect($this->_host, $this->_user, $this->_password);
+        $this->_conndb = mysqli_connect($this->_host, $this->_user, $this->_password,  $this->_name);
         if (!$this->_conndb) {
-            die("Database Connection Failed<br>" . mysql_error());
+            die("Database Connection Failed<br>" . mysqli_error());
         } else {
-            $_select = mysql_select_db($this->_name, $this->conndb);
+            $_select = mysqli_select_db($this->_conndb, $this->_name);
             if (!$_select) {
-                die("Database Selection Failed<br>" . mysql_error());
+                die("Database Selection Failed<br>" . mysqli_error());
             }
         }
-        mysql_set_charset("utf8", $this->_conndb);
+        mysqli_set_charset($this->_conndb, "utf8");
     }
 
     public function close() {
-        if (!mysql_close($this->_conndb)) {
+        if (!mysqli_close($this->_conndb)) {
             die("Closing Connection Failed!");
         }
     }
@@ -43,7 +42,7 @@ class Dbase {
             if (get_magic_quotes_gpc()) {
                 $value = stripslashes($value);
             }
-            $value = mysql_real_escape_string($value);
+            $value = mysqli_real_escape_string($value);
         } else {
             if (!get_magic_quotes_gpc()) {
                 $value = addcslashes($value);
@@ -54,28 +53,28 @@ class Dbase {
 
     public function query($sql) {
         $this->_last_query = $sql;
-        $result = mysql_query($sql, $this->_conndb);
+        $result = mysqli_query($this->_conndb, $sql);
         $this->displayQuery($result);
         return $result;
     }
 
     public function displayQuery($result) {
         if (!$result) {
-            $output = "Database Query Failed: " . mysql_error() . "<br>";
+            $output = "Database Query Failed: " . mysqli_error($this->_conndb) . "<br>";
             $output .="Last SQL query was:" . $this->_last_query;
             die($output);
         } else {
-            $this->_affected_rows = mysql_affected_rows($this->_conndb);
+            $this->_affected_rows = mysqli_affected_rows($this->_conndb);
         }
     }
 
     public function fetchAll($sql) {
         $result = $this->query($sql);
         $out = array();
-        while ($row = mysql_fetch_assoc($result)) {
-            $row[] = $row;
+        while ($row = mysqli_fetch_assoc($result)) {
+            $out[] = $row;
         }
-        mysql_free_result($result);
+        mysqli_free_result($result);
         return $out;
     }
 
@@ -85,7 +84,7 @@ class Dbase {
     }
 
     public function lastId() {
-        return mysql_insert_id($this->_conndb);
+        return mysqli_insert_id($this->_conndb);
     }
 
 }

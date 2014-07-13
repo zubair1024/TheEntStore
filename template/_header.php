@@ -1,3 +1,7 @@
+<?php
+$objBusiness = new Business();
+$business=$objBusiness->getBusiness();
+?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -11,7 +15,7 @@
 <body>
 <div id="header">
 	<div id="header_in">
-		<h5><a href="#">The Entertainment Store</a></h5>
+            <h5><a href="#"><?php echo $business['name']; ?></a></h5>
 	</div>
 </div>
 <div id="outer">
