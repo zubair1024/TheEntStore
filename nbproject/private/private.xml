@@ -3,10 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/wamp/www/TheEntStore/pages/catalog.php</file>
+            <file>file:/C:/wamp/www/TheEntStore/classes/Catalog.php</file>
             <file>file:/C:/wamp/www/TheEntStore/classes/Dbase.php</file>
-            <file>file:/C:/wamp/www/TheEntStore/classes/Application.php</file>
-            <file>file:/C:/wamp/www/TheEntStore/classes/Business.php</file>
-            <file>file:/C:/wamp/www/TheEntStore/template/_header.php</file>
+            <file>file:/C:/wamp/www/TheEntStore/template/_footer.php</file>
+            <file>file:/C:/wamp/www/TheEntStore/classes/Helper.php</file>
         </group>
     </open-files>
 </project-private>

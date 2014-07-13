@@ -28,15 +28,14 @@ $cats = $objCatalog->getCategories();
                         <?php
                         if (!empty($cats)) {
                             foreach ($cats as $cat) {
-                                echo "<li><a href=\"/?page=catalog&amp;category=".$cat['id']."\"";
-                                echo Helper::getActive(array('category'=>$cat['id']));
+                                echo "<li><a href=\"/?page=catalog&amp;category=" . $cat['id'] . "\"";
+                                echo Helper::getActive(array('category' => $cat['id']));
                                 echo ">";
-                                echo Helper::encodeHTML($cat['name']);
-                                echo '</a></li>';
+                                echo Helper::encodeHtml($cat['name']);
+                                echo "</a></li>";
                             }
                         }
                         ?>
-                        <li><a href="#">link</a></li>
-                                </ul>
-                                </div>
-                                <div id = "right">                                
+                    </ul>
+                </div>
+                <div id = "right">                                

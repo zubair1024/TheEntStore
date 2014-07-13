@@ -38,17 +38,17 @@ class Dbase {
     }
 
     public function escape($value) {
-        if (function_exists("mysql_real_escape_string")) {
+        if (function_exists("mysqli_real_escape_string")) {
             if (get_magic_quotes_gpc()) {
                 $value = stripslashes($value);
             }
-            $value = mysqli_real_escape_string($value);
+            $value = mysqli_real_escape_string($this->_conndb,$value);
         } else {
             if (!get_magic_quotes_gpc()) {
                 $value = addcslashes($value);
             }
         }
-        return value;
+        return $value;
     }
 
     public function query($sql) {

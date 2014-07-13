@@ -4,16 +4,17 @@ class Helper {
             if(!empty($page)){
                 if(is_array($page)){
                     $error=array();
-                    foreach($page as $key=>$value){
+                    foreach($page as $key => $value){
                         if(Url::getParams($key)!=$value){
                             array_push($error, $key);
                         }
                     }
-                    return empty($error)?"class=\"act\"":null;
+                    return empty($error)? " class=\"act\"":null;
                 }
-                return $page==Url::cPage()?"class=\"act\"":null;
+                return $page==Url::cPage()? " class=\"act\"":null;
             }
         }
+        
 	public static function encodeHTML($string, $case = 2) {
 		switch($case) {
 			case 1:
@@ -35,5 +36,11 @@ class Helper {
 			break;
 		}
 	}
+        public static function getImgSize($image,$case){
+            if(is_file($image)){
+                $size=  getimagesize($image);
+                return $size[$case];
+            }
+        }
 	
 }
