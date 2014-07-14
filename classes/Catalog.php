@@ -5,6 +5,7 @@ class Catalog extends Application {
     private $_table = 'categories';
     private $_table_2 = 'products';
     public $_path = 'media/catalog/';
+    public static $_currency='&pound;';
 
     public function getCategories() {
         $sql = "SELECT * FROM `{$this->_table}`

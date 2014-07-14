@@ -27,14 +27,26 @@ if (empty($cat)) {
                         <a href="/?page=catalogue-item&amp;category=<?php echo $category['id']; ?>&amp;id=<?php echo $row['id']; ?>"><img src="<?php echo $image; ?>" alt="<?php echo Helper::encodeHtml($row['name'], 1); ?>" width="<?php echo $width; ?>" /></a>
                     </div>
                     <div class="catalogue_wrapper_right">
-
+                        <h4><a href="/?page=catalogue-item&amp;category=<?php echo $category['id']; ?>&amp;id=<?php echo $row['id']; ?>"><?php Helper::encodeHTML($row['name'], 1) ?></a></h4>
+                        <h4>PRICE:&nbsp;
+                            <?php
+                            echo Catalog::$_currency;
+                            echo number_format($row['price']);
+                            ?>
+                        </h4>
+                        <p>
+                            <?php echo Helper::shortenString(Helper::encodeHTML($row['description'])); ?>
+                        </p>
+                        <p><?php echo Basket::activeButton($row['id']); ?></p>
                     </div>
                 </div>
                 <?php
             }
-        }
+        }else{    
         ?>
+        <p>There are no products in this category.</p>
         <?php
+        }
         require_once("_footer.php");
     }
 }

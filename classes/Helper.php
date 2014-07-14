@@ -42,5 +42,14 @@ class Helper {
                 return $size[$case];
             }
         }
+        public static function shortenString($string,$len=150){
+            if(strlen($string)){
+                $string=trim(substr($string, 0, $len));
+                $string=  substr($string, 0,  strpos($string," "))."&hellip;";
+            }else{
+                $string.="&hellip;";
+            }
+            return $string;
+        }
 	
 }
