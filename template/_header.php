@@ -28,7 +28,7 @@ $cats = $objCatalog->getCategories();
                         <?php
                         if (!empty($cats)) {
                             foreach ($cats as $cat) {
-                                echo "<li><a href=\"/?page=catalog&amp;category=" . $cat['id'] . "\"";
+                                echo "<li><a href=\"/TheEntStore/?page=catalog&amp;category=" . $cat['id'] . "\"";
                                 echo Helper::getActive(array('category' => $cat['id']));
                                 echo ">";
                                 echo Helper::encodeHtml($cat['name']);

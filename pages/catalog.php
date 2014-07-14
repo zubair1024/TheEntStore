@@ -14,19 +14,20 @@ if (empty($cat)) {
         <h1>Catalog: </h1> <?php echo $category['name']; ?>
         <?php
         if (!empty($rows)) {
+
             foreach ($rows as $row) {
                 ?>
                 <div class="catalogue_wrapper">
                     <div class="catalogue_wrapper_left">
                         <?php
-                        $image = !empty($row['image']) ? 'media/catalog/' . $row['image'] : 'media/catalog/unavaliable.png';
+                        $image = !empty($row['image']) ? $objCatalog->_path . $row['image'] : $objCatalog->_path . 'unavaliable.png';
                         $width = Helper::getImgSize($image, 0);
                         $width = $width > 120 ? 120 : $width;
                         ?>
-                        <a href="/?page=catalog-item&amp;category=<?php echo $category['id']; ?>&amp;id=<?php echo $row['id']; ?>"><img src="<?php echo $image; ?>" width="<?php echo $width; ?>"></a>
+                        <a href="/?page=catalogue-item&amp;category=<?php echo $category['id']; ?>&amp;id=<?php echo $row['id']; ?>"><img src="<?php echo $image; ?>" alt="<?php echo Helper::encodeHtml($row['name'], 1); ?>" width="<?php echo $width; ?>" /></a>
                     </div>
                     <div class="catalogue_wrapper_right">
-                        
+
                     </div>
                 </div>
                 <?php
