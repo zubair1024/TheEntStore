@@ -9,6 +9,8 @@ if (empty($cat)) {
         require_once 'error.php';
     } else {
         $rows = $objCatalog->getProducts($cat);
+        $objPaging = new Paging($rows, 3);
+        $rows = $objPaging->getRecords();
         require_once("_header.php");
         ?>
         <h1>Catalog: </h1> <?php echo $category['name']; ?>
@@ -42,10 +44,11 @@ if (empty($cat)) {
                 </div>
                 <?php
             }
-        }else{    
-        ?>
-        <p>There are no products in this category.</p>
-        <?php
+            echo $objPaging->getPaging();
+        } else {
+            ?>
+            <p>There are no products in this category.</p>
+            <?php
         }
         require_once("_footer.php");
     }
