@@ -5,7 +5,7 @@ class Catalog extends Application {
     private $_table = 'categories';
     private $_table_2 = 'products';
     public $_path = 'media/catalog/';
-    public static $_currency='&pound;';
+    public static $_currency = '&pound;';
 
     public function getCategories() {
         $sql = "SELECT * FROM `{$this->_table}`
@@ -23,6 +23,12 @@ class Catalog extends Application {
         $sql = "SELECT * FROM `{$this->_table_2}`
 				WHERE `category`='" . $this->db->escape($cat) . "' ORDER BY `date` DESC";
         return $this->db->fetchAll($sql);
+    }
+
+    public function getProduct($id) {
+        $sql = "SELECT * FROM `{$this->_table_2}`
+				WHERE `id`='" . $this->db->escape($id) . "'";
+        return $this->db->fetchOne($sql);
     }
 
 }

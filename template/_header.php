@@ -23,6 +23,7 @@ $cats = $objCatalog->getCategories();
         <div id="outer">
             <div id="wrapper">
                 <div id="left">
+                    <?php require_once ("basket_left.php"); ?>
                     <h2>Categories</h2>
                     <ul id="navigation">
                         <?php
