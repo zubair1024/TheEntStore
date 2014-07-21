@@ -1,20 +1,22 @@
 <?php
 class Helper {
-	public static function getActive($page=NULL){
-            if(!empty($page)){
-                if(is_array($page)){
-                    $error=array();
-                    foreach($page as $key => $value){
-                        if(Url::getParams($key)!=$value){
-                            array_push($error, $key);
-                        }
-                    }
-                    return empty($error)? " class=\"act\"":null;
-                }
-                return $page==Url::cPage()? " class=\"act\"":null;
-            }
-        }
-        
+
+	
+	public static function getActive($page = null) {
+		if(!empty($page)) {
+			if(is_array($page)) {
+				$error = array();
+				foreach($page as $key => $value) {
+					if(Url::getParams($key) != $value) {
+						array_push($error, $key);
+					}
+				}
+				return empty($error) ? " class=\"act\"" : null;
+			}
+		}
+		return $page == Url::cPage() ? " class=\"act\"" : null;
+	}
+	
 	public static function encodeHTML($string, $case = 2) {
 		switch($case) {
 			case 1:
@@ -36,20 +38,94 @@ class Helper {
 			break;
 		}
 	}
-        public static function getImgSize($image,$case){
-            if(is_file($image)){
-                $size=  getimagesize($image);
-                return $size[$case];
-            }
-        }
-        public static function shortenString($string,$len=150){
-            if(strlen($string)){
-                $string=trim(substr($string, 0, $len));
-                $string=  substr($string, 0,  strpos($string," "))."&hellip;";
-            }else{
-                $string.="&hellip;";
-            }
-            return $string;
-        }
+	
+	
+	public static function getImgSize($image, $case) {
+		if(is_file($image)) {
+			// 0 => width, 1 => height, 2 => type, 3 => attributes
+			$size = getimagesize($image);
+			return $size[$case];
+		}
+	}
+	
+	
+	public static function shortenString($string, $len = 150) {
+		if (strlen($string) > $len) {
+			$string = trim(substr($string, 0, $len));
+			$string = substr($string, 0, strrpos($string, " "))."&hellip;";
+		} else {
+			$string .= "&hellip;";
+		}
+		return $string;
+	}
+	
+	
+	
+	
+	
+	
+	public static function redirect($url = null) {
+		if (!empty($url)) {
+			header("Location: {$url}");
+			exit;
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	public static function setDate($case = null, $date = null) {
+		
+		$date = empty($date) ? time() : strtotime($date);
+		
+		switch($case) {
+			case 1:
+			// 01/01/2010
+			return date('d/m/Y', $date);
+			break;
+			case 2:
+			// Monday, 1st January 2010, 09:30:56
+			return date('l, jS F Y, H:i:s', $date);
+			break;
+			case 3:
+			// 2010-01-01-09-30-56
+			return date('Y-m-d-H-i-s', $date);
+			break;
+			default:
+			return date('Y-m-d H:i:s', $date);
+		}
+	
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public static function cleanString($name = null) {
+		if (!empty($name)) {
+			return strtolower(preg_replace('/[^a-zA-Z0-9.]/', '-', $name));
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

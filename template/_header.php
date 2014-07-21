@@ -7,6 +7,8 @@ $cats = $objCatalog->getCategories();
 <!DOCTYPE HTML>
 <html>
     <head>
+        <script src="../js/jquery-1.11.1.min.js" type="text/javascript"></script>
+        <script src="../js/basket.js" type="text/javascript"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>The Entertainment Store</title>
         <meta name="description" content="The Entertainment Store" />
